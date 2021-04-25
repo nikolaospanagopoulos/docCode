@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react';
 import * as esbuild from 'esbuild-wasm'
+import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
 
 
 function App() {
@@ -19,12 +20,17 @@ function App() {
     if (!ref.current) {
       return;
     }
-    const result = await ref.current.transform(input, {
-      loader: 'jsx',
-      target: 'es2015',
-
+    const result = await ref.current.build({
+      entryPoints: ['index.js'],
+      bundle: true,
+      write: false,
+      plugins: [unpkgPathPlugin()],
+      define: {
+        'process.env.NODE_ENV': '"production"',
+        global:'window'
+      }
     })
-    setCode(result.code)
+    setCode(result.outputFiles[0].text)
   }
   useEffect(() => {
     startService()
