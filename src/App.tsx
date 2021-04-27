@@ -2,7 +2,7 @@ import { useEffect, useState, useRef } from 'react';
 import * as esbuild from 'esbuild-wasm'
 import { unpkgPathPlugin } from './plugins/unpkg-path-plugin';
 import { fetchPlugin } from './plugins/fetch-plugin'
-
+import {CodeEditor} from './components/code-editor'
 function App() {
   const ref = useRef<any>();
   const iframe = useRef<any>();
@@ -63,6 +63,7 @@ function App() {
   `;
   return (
     <div className="App">
+      <CodeEditor/>
       <textarea onChange={e => setInput(e.target.value)} value={input}></textarea>
       <div>
         <button onClick={() => onClickButton()}>Submit</button>
