@@ -1,32 +1,39 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CodeEditor } from './code-editor'
 import { Preview } from './preview'
-import {bundle} from '../bundler/index'
+import { bundle } from '../bundler/index'
+import { Resizable } from './resizable'
 function CodeWrapper() {
+    const [code, setCode] = useState('')
+    const [input, setInput] = useState('');
+
+    useEffect(() => {
+        const timer = setTimeout(async() => {
+            const output = await bundle(input)
+            setCode(output)
+        }, 1000);
+
+        return () => {
+            clearTimeout(timer)
+        }
+    }, [input])
 
 
-  const [code,setCode] = useState('')
-  const [input, setInput] = useState('');
 
 
 
-  const onClickButton = async () => {
-  
-    const output = await bundle(input) 
-      setCode(output)
-  }
 
-  
-  return (
-    <div className="App">
-      <CodeEditor initialValue="const a = 1;" onChange={(value)=>setInput(value)}/>
-      <div>
-        <button onClick={() => onClickButton()}>Submit</button>
-      </div>
-      <Preview code={code}/>
-    </div>
-  );
+    return (
+        <Resizable direction="vertical">
+            <div className="App" style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
+                <Resizable direction='horizontal'>
+                    <CodeEditor initialValue="const a = 1;" onChange={(value) => setInput(value)} />
+                </Resizable>
+                <Preview code={code} />
+            </div>
+        </Resizable>
+    );
 }
 
 
-export {CodeWrapper};
+export { CodeWrapper };
