@@ -5,12 +5,14 @@ import { bundle } from '../bundler/index'
 import { Resizable } from './resizable'
 function CodeWrapper() {
     const [code, setCode] = useState('')
+    const [error,setError] = useState('')
     const [input, setInput] = useState('');
 
     useEffect(() => {
         const timer = setTimeout(async() => {
             const output = await bundle(input)
-            setCode(output)
+            setCode(output.code)
+            setError(output.err)
         }, 1000);
 
         return () => {
@@ -29,7 +31,7 @@ function CodeWrapper() {
                 <Resizable direction='horizontal'>
                     <CodeEditor initialValue="const a = 1;" onChange={(value) => setInput(value)} />
                 </Resizable>
-                <Preview code={code} />
+                <Preview code={code} error={error}/>
             </div>
         </Resizable>
     );
