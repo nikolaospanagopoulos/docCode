@@ -1,13 +1,17 @@
 //import {CodeWrapper} from './components/code-wrapper'
 import 'bulmaswatch/superhero/bulmaswatch.min.css'
-import {TextEditor} from './components/text-editor'
+import { TextEditor } from './components/text-editor'
+import { Provider } from 'react-redux'
+import {store} from './state/store'
 function App() {
 
 
   return (
-    <div className="App">
-     <TextEditor/>
-    </div>
+    <Provider store={store}>
+      <div >
+        <TextEditor />
+      </div>
+    </Provider>
   );
 }
 

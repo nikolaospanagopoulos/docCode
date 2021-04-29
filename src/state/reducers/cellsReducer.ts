@@ -24,7 +24,18 @@ const cellsReducer = (
 ): CellsState => {
   switch (action.type) {
     case ActionType.UPDATE_CELL:
-      return state;
+      return {
+        ...state,
+        data: {
+          //all existing cells
+          ...state.data,
+          //overwrite whats on action.payload.id
+          [action.payload.id]: {
+            ...state.data[action.payload.id],
+            content:action.payload.content
+          }
+        }
+      };
     case ActionType.MOVE_CELL:
       return state;
     case ActionType.INSERT_CELL_BEFORE:
