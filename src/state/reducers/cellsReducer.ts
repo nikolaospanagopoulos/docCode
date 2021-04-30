@@ -24,7 +24,7 @@ const cellsReducer = produce(
       case ActionType.UPDATE_CELL:
         const { id, content } = action.payload;
         state.data[id].content = content;
-        return;
+        return state;
       case ActionType.MOVE_CELL:
         const { direction } = action.payload;
         const index = state.order.findIndex((id) => id === action.payload.id);
@@ -60,7 +60,7 @@ const cellsReducer = produce(
       default:
         return state;
     }
-  }
+  },initialState
 );
 
 const randomId = () => {

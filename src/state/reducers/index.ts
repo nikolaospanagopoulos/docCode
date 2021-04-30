@@ -6,7 +6,7 @@ const reducers = combineReducers({
 })
 
 
-export default reducers
+export {reducers}
 
 
 export type RootState = ReturnType<typeof reducers>;
