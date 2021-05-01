@@ -4,10 +4,10 @@ import { Action } from '../actions/index'
 
 interface BundlesState {
     [key: string]: {
-        loading: boolean;
-        code: string;
+        loading: boolean
+        code: string
         err: string
-    }
+    } | undefined
 }
 
 const initialState: BundlesState = {};
@@ -31,4 +31,4 @@ export const bundlesReducer = produce((state: BundlesState = initialState, actio
         default:
             return state;
     }
-})
+},initialState)

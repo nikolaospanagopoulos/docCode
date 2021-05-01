@@ -1,13 +1,18 @@
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updateCell, deleteCell, moveCell, insertCellAfter } from '../state/action-creators/index' 
-
+import {useMemo} from 'react'
+import { updateCell, deleteCell, moveCell, insertCellAfter } from '../state/action-creators/cells-action-creators' 
+import {createBundle} from '../state/action-creators/bundles-action-creators'
 const actionCreators = {
-    updateCell,deleteCell,moveCell,insertCellAfter
+    updateCell,deleteCell,moveCell,insertCellAfter,createBundle
 }
 export const useActions = () => {
     const dispatch = useDispatch()
 
-    return bindActionCreators(actionCreators,dispatch)
+    
+
+    return useMemo(() => {
+        return bindActionCreators(actionCreators,dispatch)
+    },[dispatch])
 }
 
