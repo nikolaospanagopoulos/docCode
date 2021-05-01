@@ -5,7 +5,7 @@ import {reducers} from './reducers/index'
 export const store = createStore(reducers, {}, applyMiddleware(thunk))
 
 store.dispatch({
-    type: ActionType.INSERT_CELL_BEFORE,
+    type: ActionType.INSERT_CELL_AFTER,
     payload: {
         id: null,
         type:'code'
@@ -14,7 +14,7 @@ store.dispatch({
 
 
 store.dispatch({
-    type: ActionType.INSERT_CELL_BEFORE,
+    type: ActionType.INSERT_CELL_AFTER,
     payload: {
         id: null,
         type:'text'

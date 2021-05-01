@@ -32,7 +32,7 @@ const CodeWrapper: React.FC<CodeWrapperProps> = ({ cell }) => {
 
     return (
         <Resizable direction="vertical">
-            <div className="App" style={{ height: '100%', display: 'flex', flexDirection: 'row' }}>
+            <div className="App" style={{ height: 'calc(100% - 10px)', display: 'flex', flexDirection: 'row' }}>
                 <Resizable direction='horizontal'>
                     <CodeEditor initialValue={cell.content} onChange={(value) => updateCell(cell.id, value)} />
                 </Resizable>

@@ -1,9 +1,9 @@
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { updateCell, deleteCell, moveCell, insertCellBefore } from '../state/action-creators/index' 
+import { updateCell, deleteCell, moveCell, insertCellAfter } from '../state/action-creators/index' 
 
 const actionCreators = {
-    updateCell,deleteCell,moveCell,insertCellBefore
+    updateCell,deleteCell,moveCell,insertCellAfter
 }
 export const useActions = () => {
     const dispatch = useDispatch()
